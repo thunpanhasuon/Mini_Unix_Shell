@@ -28,7 +28,7 @@ int exec_parsed(char* parse, char* argv[]) {
 	if (pid == 0) {
 		execvp(parse, argv);
 
-		perror("vorp failure");
+		perror("vorp failure\n");
 		exit(EXIT_FAILURE);
 	} else {
 		wait(NULL);
@@ -75,12 +75,12 @@ int main() {
 				printf("Good bye User :) \n");
 				exit = true; 
 			}
-			if (parsed(buffers, argv, MAX_ARGUMENT_VECTOR) == 0) {
-				printf("parse succesfully\n");
+			if (parsed(buffers, argv, MAX_ARGUMENT_VECTOR) != 0) {
+				printf("Parsing string failure\n");
 			};
 
-			if (exec_parsed(buffers, argv) == 0) {
-				printf("exec successfully\n");
+			if (exec_parsed(buffers, argv) != 0) {
+				printf("exec failure\n");
 			};
 
 		} else {
